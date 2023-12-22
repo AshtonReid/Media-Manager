@@ -34,7 +34,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="GRAPHIC_ONLY" layoutX="40.0" layoutY="34.0" mnemonicParsing="false" pickOnBounds="false" prefHeight="65.0" prefWidth="63.0" style="-fx-background-image: url('file:///C:/Users/reida/Downloads/info.png')url('file:///C:/Users/reida/Downloads/info.png'); -fx-background-size: 70%; -fx-background-radius: 50%; -fx-background-repeat: no-repeat; -fx-background-position: center; -fx-background-color: white; -fx-content-display: graphic-only; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 50%;" textFill="#941b1b">
+                  <Button contentDisplay="GRAPHIC_ONLY" layoutX="40.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#infoBtnClick" pickOnBounds="false" prefHeight="65.0" prefWidth="63.0" style="-fx-background-image: url('file:///C:/Users/reida/Downloads/info.png')url('file:///C:/Users/reida/Downloads/info.png'); -fx-background-size: 70%; -fx-background-radius: 50%; -fx-background-repeat: no-repeat; -fx-background-position: center; -fx-background-color: white; -fx-content-display: graphic-only; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 50%;" textFill="#941b1b">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
@@ -52,7 +52,7 @@
          <right>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="112.0" prefWidth="240.0" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0" spacing="5.0" style="-fx-border-color: black; -fx-border-radius: 10%;">
+                  <HBox alignment="CENTER" prefHeight="32.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-radius: 10%;">
                      <children>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +62,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <TextField />
+                        <TextField prefHeight="25.0" prefWidth="140.0" style="border: 0;" />
                      </children>
                      <HBox.margin>
                         <Insets right="30.0" />
@@ -85,7 +85,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="156.0" prefWidth="1024.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="KNEWAVE">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GENRE HERE">
                      <font>
                         <Font name="Arial Black" size="69.0" />
                      </font>
