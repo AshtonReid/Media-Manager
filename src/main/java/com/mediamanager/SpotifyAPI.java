@@ -56,24 +56,18 @@ public class SpotifyAPI {
 
     public static int checkAccessToken(String accessToken) {
         try {
-            // Set up the URL and connection
             URL url = new URL("https://api.spotify.com/v1/recommendations/available-genre-seeds");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Authorization", "Bearer " + accessToken);
 
-            // Get the response from the server
             int responseCode = connection.getResponseCode();
 
-            // Check if the token is valid based on the response code
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                // Token is valid
                 return 1;
             } else if (responseCode == HttpURLConnection.HTTP_UNAUTHORIZED) {
-                // Token is invalid or expired
                 return 0;
             } else {
-                // Handle other error responses
                 System.out.println("Error response code: " + responseCode);
                 return -1;
             }
@@ -86,7 +80,6 @@ public class SpotifyAPI {
 
     public static void main(String[] args) {
         String accessToken = getAccessToken();
-        System.out.println("Access Token: " + accessToken);
         System.out.println(checkAccessToken(accessToken));
     }
 }
