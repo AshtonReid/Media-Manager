@@ -20,6 +20,7 @@ public class MainApplication extends Application {
         YourController controller = loader.getController();
 
         Scene scene = new Scene(root, 1024, 640);
+		primaryStage.setResizable(false);
         primaryStage.setTitle("Media Manager");
         primaryStage.setScene(scene);
         primaryStage.show();
