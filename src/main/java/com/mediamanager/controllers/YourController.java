@@ -17,48 +17,55 @@ import javafx.scene.text.Font;
 import com.mediamanager.SpotifyAPI;
 
 public class YourController {
-    
+
+    private Stage settingsStage;
+    private Stage infoStage;
+
     @FXML
     private ImageView settingsImg;
-    
+
     @FXML
     private Text genreTitle;
-    
+
     @FXML
     void settingsBtnClick(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Settings.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Settings");
-            stage.show();
-        } catch (IOException err) {
-            err.printStackTrace();
+        if (settingsStage == null || !settingsStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Settings.fxml"));
+                Parent root = loader.load();
+                settingsStage = new Stage();
+                settingsStage.setScene(new Scene(root));
+                settingsStage.setTitle("Settings");
+                settingsStage.show();
+            } catch (IOException err) {
+                err.printStackTrace();
+            }
         }
     }
 
     @FXML
     void infoBtnClick(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Info.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Info");
-            stage.show();
-        } catch (IOException err) {
-            err.printStackTrace();
+        if (infoStage == null || !infoStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Info.fxml"));
+                Parent root = loader.load();
+                infoStage = new Stage();
+                infoStage.setScene(new Scene(root));
+                infoStage.setTitle("Info");
+                infoStage.show();
+            } catch (IOException err) {
+                err.printStackTrace();
+            }
         }
     }
-    
+
     public void initialize() {
         Random random = new Random();
         String[] genres = SpotifyAPI.getGenres(SpotifyAPI.getAccessToken());
         int randomIndex = random.nextInt(genres.length);
-        
+
         genreTitle.setText(genres[randomIndex].toUpperCase());
-        
+
         Font.loadFont(getClass().getResourceAsStream("/fonts/Knewave.ttf"), 60);
         genreTitle.setStyle("-fx-font-family: 'Knewave'; -fx-font-size: 69;");
     }
