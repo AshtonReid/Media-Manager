@@ -17,7 +17,9 @@ public class SpotifyAPI {
     private static String CLIENT_ID = "2cb6629f5fc84bc6857da01ae3de1672";
     private static String CLIENT_SECRET = "33b3e67da7a34c3bbb408c606c900441";
 
-    public static String getAccessToken() {
+    private static String ACCESS_TOKEN;
+
+    private static String getAccessToken() {
         try {
             String authHeader = "Basic " + Base64.getEncoder()
                     .encodeToString((CLIENT_ID + ":" + CLIENT_SECRET).getBytes(StandardCharsets.UTF_8));
@@ -83,20 +85,23 @@ public class SpotifyAPI {
         }
     }
 
-    public static String[] getGenres(String accessToken) {
+    public static void refreshAccessToken() {
+        if (checkAccessToken(ACCESS_TOKEN) == 0) {
+            ACCESS_TOKEN = getAccessToken();
+        }
+    }
+
+    public static String[] getGenres() {
         try {
-            // Set up the URL and connection
+            refreshAccessToken();
             URL url = new URL("https://api.spotify.com/v1/recommendations/available-genre-seeds");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+            connection.setRequestProperty("Authorization", "Bearer " + ACCESS_TOKEN);
 
-            // Get the response from the server
             int responseCode = connection.getResponseCode();
 
-            // Check if the request was successful
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                // Read and parse the response using a simpler regex
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder response = new StringBuilder();
                 String line;
@@ -107,7 +112,6 @@ public class SpotifyAPI {
 
                 reader.close();
 
-                // Parse the JSON response and retrieve the genres using regex
                 Pattern pattern = Pattern.compile("\"([^\"]+)\",?");
                 Matcher matcher = pattern.matcher(response.toString());
 
@@ -123,7 +127,6 @@ public class SpotifyAPI {
 
                 return genres;
             } else {
-                // Handle error responses
                 System.out.println("Error response code: " + responseCode);
             }
 
@@ -133,9 +136,9 @@ public class SpotifyAPI {
 
         return null;
     }
-
-    public static void main(String[] args) {
-        String accessToken = getAccessToken();
-        getGenres(accessToken);
+    
+    public static String getSongByGenre(String genre) {
+       System.out.println("gooooh");
+       return genre;
     }
 }

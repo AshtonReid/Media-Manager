@@ -13,11 +13,13 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+import javafx.scene.control.Button;
 
 import com.mediamanager.SpotifyAPI;
 
 public class YourController {
-
+    
+    private Stage stage;
     private Stage settingsStage;
     private Stage infoStage;
 
@@ -26,6 +28,9 @@ public class YourController {
 
     @FXML
     private Text genreTitle;
+    
+    @FXML
+    private Button readMoreBtn;
 
     @FXML
     void settingsBtnClick(MouseEvent event) {
@@ -49,19 +54,30 @@ public class YourController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Info.fxml"));
                 Parent root = loader.load();
-                infoStage = new Stage();
-                infoStage.setScene(new Scene(root));
-                infoStage.setTitle("Info");
-                infoStage.show();
+//                infoStage = new Stage();
+//                infoStage.setScene(new Scene(root));
+//                infoStage.setTitle("Info");
+//                infoStage.show();
+                this.stage.setScene(new Scene(root));
+                this.stage.show();
             } catch (IOException err) {
                 err.printStackTrace();
             }
         }
     }
+    
+    @FXML
+    void readMoreBtnClick(MouseEvent event) {
+        System.out.println("no");
+    }
+    
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     public void initialize() {
         Random random = new Random();
-        String[] genres = SpotifyAPI.getGenres(SpotifyAPI.getAccessToken());
+        String[] genres = SpotifyAPI.getGenres();
         int randomIndex = random.nextInt(genres.length);
 
         genreTitle.setText(genres[randomIndex].toUpperCase());
