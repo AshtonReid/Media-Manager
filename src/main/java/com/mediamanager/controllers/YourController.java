@@ -1,37 +1,24 @@
 // YourController.java
 package com.mediamanager.controllers;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.scene.text.Font;
-import javafx.scene.control.Button;
 
 import com.mediamanager.Genre;
 
 public class YourController {
-
-	private Stage settingsStage;
-	private Stage infoStage;
 
 	@FXML
 	private ImageView settingsImg, bookImage, movieImage;
 
 	@FXML
 	private Text genreTitle, songName, songArtist, bookName, bookAuthor, movieName, movieID;
-
-	@FXML
-	private Button readMoreBtn;
 
 	@FXML
 	private WebView songEmbed;
@@ -51,19 +38,7 @@ public class YourController {
 
 	@FXML
 	void infoBtnClick(MouseEvent event) {
-		if (infoStage == null || !infoStage.isShowing()) {
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Info.fxml"));
-				Parent root = loader.load();
-				infoStage = new Stage();
-				infoStage.setScene(new Scene(root));
-				infoStage.setTitle("Info");
-				infoStage.show();
-
-			} catch (IOException err) {
-				err.printStackTrace();
-			}
-		}
+		
 	}
 
 	@FXML

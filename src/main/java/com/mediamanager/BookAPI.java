@@ -58,7 +58,7 @@ public class BookAPI {
                         smallThumbnail = volumeInfo.getJSONObject("imageLinks").getString("smallThumbnail");
                     } else {
                         // Set to the relative path of a default image in resources
-                        smallThumbnail = "path/to/resources/book_default.png";
+                        smallThumbnail = MainApplication.class.getResource("/images/book_default.png").toString();
                     }
 
                     String canonicalVolumeLink = volumeInfo.getString("canonicalVolumeLink");

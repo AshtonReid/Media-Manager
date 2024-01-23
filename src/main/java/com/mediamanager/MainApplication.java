@@ -1,7 +1,6 @@
 // MainApplication.java
 package com.mediamanager;
 
-import com.mediamanager.controllers.YourController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,9 +14,6 @@ public class MainApplication extends Application {
         // Load FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
         Parent root = loader.load();
-
-        // Set the controller
-        YourController controller = loader.getController();
 
         Scene scene = new Scene(root, 1024, 640);
         primaryStage.setResizable(false);

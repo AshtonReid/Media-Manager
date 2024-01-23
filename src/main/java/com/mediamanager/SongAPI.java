@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -19,8 +18,8 @@ import org.json.JSONObject;
 
 public class SongAPI {
 
-	private static String CLIENT_ID = "2cb6629f5fc84bc6857da01ae3de1672";
-	private static String CLIENT_SECRET = "33b3e67da7a34c3bbb408c606c900441";
+	// private static String CLIENT_ID = "2cb6629f5fc84bc6857da01ae3de1672";
+	// private static String CLIENT_SECRET = "33b3e67da7a34c3bbb408c606c900441";
 
 	private static String ACCESS_TOKEN;
 
