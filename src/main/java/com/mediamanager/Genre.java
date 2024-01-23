@@ -12,122 +12,123 @@ import java.util.Random;
 import java.awt.Desktop;
 
 public class Genre {
-	private String currentGenre;
 
-	public Genre() {
-		initializeRandomGenre();
-	}
+    private String currentGenre;
 
-	private void initializeRandomGenre() {
-		try {
-			// Load the resource using the class loader
-			InputStream inputStream = getClass().getResourceAsStream("/db/GenreDB.json");
+    public Genre() {
+        initializeRandomGenre();
+    }
 
-			if (inputStream != null) {
-				// Read the genres from GenreDB.json
-				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-				StringBuilder content = new StringBuilder();
-				String line;
+    private void initializeRandomGenre() {
+        try {
+            // Load the resource using the class loader
+            InputStream inputStream = getClass().getResourceAsStream("/db/GenreDB.json");
 
-				while ((line = reader.readLine()) != null) {
-					content.append(line);
-				}
+            if (inputStream != null) {
+                // Read the genres from GenreDB.json
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder content = new StringBuilder();
+                String line;
 
-				reader.close();
+                while ((line = reader.readLine()) != null) {
+                    content.append(line);
+                }
 
-				JSONObject genreDB = new JSONObject(content.toString());
-				JSONArray genresArray = genreDB.getJSONArray("genres");
+                reader.close();
 
-				// Pick a random genre
-				currentGenre = getRandomGenre(genresArray);
-			} else {
-				System.out.println("Resource not found.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+                JSONObject genreDB = new JSONObject(content.toString());
+                JSONArray genresArray = genreDB.getJSONArray("genres");
 
-	private String getRandomGenre(JSONArray genresArray) {
-		// Randomly select a genre
-		Random random = new Random();
-		int randomIndex = random.nextInt(genresArray.length());
+                // Pick a random genre
+                currentGenre = getRandomGenre(genresArray);
+            } else {
+                System.out.println("Resource not found.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-		// Update the current genre
-		currentGenre = genresArray.getString(randomIndex);
+    private String getRandomGenre(JSONArray genresArray) {
+        // Randomly select a genre
+        Random random = new Random();
+        int randomIndex = random.nextInt(genresArray.length());
 
-		return currentGenre;
-	}
+        // Update the current genre
+        currentGenre = genresArray.getString(randomIndex);
 
-	public String getCurrentGenre() {
-		return currentGenre;
-	}
+        return currentGenre;
+    }
 
-	public String[] getSong() {
-		// Split the first genre by the first hyphen
-		String[] genreParts = currentGenre.split(" == ");
+    public String getCurrentGenre() {
+        return currentGenre;
+    }
 
-		// Get a song based on the last hyphen
-		return SongAPI.getSongByGenre(genreParts[1]);
-	}
+    public String[] getSong() {
+        // Split the first genre by the first hyphen
+        String[] genreParts = currentGenre.split(" == ");
 
-	public String[] getBook() {
-		// Split the first genre by the first hyphen
-		String[] genreParts = currentGenre.split(" == ");
+        // Get a song based on the last hyphen
+        return SongAPI.getSongByGenre(genreParts[1]);
+    }
 
-		// Get a book based on the first hyphen
-		return BookAPI.getBookBySubject(genreParts[0]);
-	}
+    public String[] getBook() {
+        // Split the first genre by the first hyphen
+        String[] genreParts = currentGenre.split(" == ");
 
-	public String[] getMovie() {
-		// Split the first genre by the first hyphen
-		String[] genreParts = currentGenre.split(" == ");
+        // Get a book based on the first hyphen
+        return BookAPI.getBookBySubject(genreParts[0]);
+    }
 
-		// Get a book based on the first hyphen
-		return MovieAPI.getMovieByGenre(genreParts[0]);
-	}
+    public String[] getMovie() {
+        // Split the first genre by the first hyphen
+        String[] genreParts = currentGenre.split(" == ");
 
-	public void refreshGenre() {
-		// Pick a new genre (different from the current one)
-		try {
-			// Load the resource using the class loader
-			InputStream inputStream = getClass().getResourceAsStream("/db/GenreDB.json");
+        // Get a book based on the first hyphen
+        return MovieAPI.getMovieByGenre(genreParts[0]);
+    }
 
-			if (inputStream != null) {
-				// Read the genres from GenreDB.json
-				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-				StringBuilder content = new StringBuilder();
-				String line;
+    public void refreshGenre() {
+        // Pick a new genre (different from the current one)
+        try {
+            // Load the resource using the class loader
+            InputStream inputStream = getClass().getResourceAsStream("/db/GenreDB.json");
 
-				while ((line = reader.readLine()) != null) {
-					content.append(line);
-				}
+            if (inputStream != null) {
+                // Read the genres from GenreDB.json
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder content = new StringBuilder();
+                String line;
 
-				reader.close();
+                while ((line = reader.readLine()) != null) {
+                    content.append(line);
+                }
 
-				JSONObject genreDB = new JSONObject(content.toString());
-				JSONArray genresArray = genreDB.getJSONArray("genres");
+                reader.close();
 
-				String newGenre = getRandomGenre(genresArray);
-				currentGenre = newGenre;
-			} else {
-				System.out.println("Resource not found.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+                JSONObject genreDB = new JSONObject(content.toString());
+                JSONArray genresArray = genreDB.getJSONArray("genres");
 
-	public static void openLink(String url) {
-		try {
-			Desktop desktop = Desktop.getDesktop();
-			if (desktop.isSupported(Desktop.Action.BROWSE)) {
-				desktop.browse(new URI(url));
-			} else {
-				System.out.println("Desktop browsing not supported. Please open the link manually.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+                String newGenre = getRandomGenre(genresArray);
+                currentGenre = newGenre;
+            } else {
+                System.out.println("Resource not found.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void openLink(String url) {
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                desktop.browse(new URI(url));
+            } else {
+                System.out.println("Desktop browsing not supported. Please open the link manually.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

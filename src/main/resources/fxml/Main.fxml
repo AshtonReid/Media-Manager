@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mediamanager.controllers.YourController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: black; -fx-background-image: url('https://i.ibb.co/znnRn94/background.png'); -fx-background-repeat: no-repeat; -fx-background-size: 100%;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mediamanager.controllers.YourController">
    <top>
       <BorderPane prefHeight="112.0" prefWidth="1024.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <left>
