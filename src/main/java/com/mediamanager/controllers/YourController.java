@@ -3,6 +3,7 @@ package com.mediamanager.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -38,7 +39,7 @@ public class YourController {
 
 	@FXML
 	void infoBtnClick(MouseEvent event) {
-		
+		new Alert(Alert.AlertType.INFORMATION, "Media Manager programmed by Ashton & Parker for Mr. Hasanovic.\nICS4U").showAndWait();
 	}
 
 	@FXML
